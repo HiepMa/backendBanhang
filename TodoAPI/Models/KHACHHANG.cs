@@ -24,7 +24,7 @@ namespace BANHANG.Models
         public string DiaChi { get; set; }
 
         [Column("SDT")]
-        public int sdt { get; set; }
+        public string sdt { get; set; }
 
         [Column("EMAIL")]
         public string Email { get; set; }

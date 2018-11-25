@@ -11,7 +11,7 @@ namespace BANHANG.Models
     public class CT_GIOHANG
     {
         [Key]
-        [Column("ID_CTGH`")]
+        [Column("ID_CTGH")]
         public long Id { get; set; }
 
         [Column("IDGH")]

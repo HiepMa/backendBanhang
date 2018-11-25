@@ -33,6 +33,6 @@ namespace BANHANG.Models
         public long SumTT { get; set; }
 
         [ForeignKey("Ma")]
-        public KHACHHANG khachhang { get; set; }
+        public virtual KHACHHANG khachhang { get; set; }
     }
 }

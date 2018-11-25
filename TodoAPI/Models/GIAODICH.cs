@@ -30,6 +30,6 @@ namespace BANHANG.Models
         public string Sothe { get; set; }
 
         [ForeignKey("IdGh")]
-        public virtual GIOHANG giohang { get; set; }
+        public virtual GIOHANG Giohang { get; set; }
     }
 }

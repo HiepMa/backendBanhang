@@ -11506,11 +11506,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\TodoAPI\\TodoAPI\\BANHANG.csproj",
+      "projectUniqueName": "F:\\TodoAPI\\backendBanhang\\TodoAPI\\BANHANG.csproj",
       "projectName": "BANHANG",
-      "projectPath": "F:\\TodoAPI\\TodoAPI\\BANHANG.csproj",
+      "projectPath": "F:\\TodoAPI\\backendBanhang\\TodoAPI\\BANHANG.csproj",
       "packagesPath": "C:\\Users\\ghost\\.nuget\\packages\\",
-      "outputPath": "F:\\TodoAPI\\TodoAPI\\obj\\",
+      "outputPath": "F:\\TodoAPI\\backendBanhang\\TodoAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -11,11 +11,11 @@ namespace BANHANG.Models
     public class GIAODICH
     {
         [Key]
-        [Column("IDGIOHANG")]
+        [Column("IDGIAODICH")]
         public long ID { get; set; }
 
         [Column("IDGIOHANG")]
-        public long IdGh { get; set; }
+        public  long IdGh { get; set; }
 
         [Column("SOTIEN")]
         public long SoTien { get; set; }

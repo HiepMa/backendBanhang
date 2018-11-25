@@ -13,7 +13,6 @@ namespace BANHANG.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableCors("AllowSpecificOrigin")]
     public class KhachHangController : ControllerBase
     {
         private readonly DataContext _context;

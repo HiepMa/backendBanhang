@@ -12,21 +12,21 @@ namespace BANHANG.Models
     {
         [Key]
         [Column("IDKH")]
-        public long Id { get; set; }
+        public long IDKH { get; set; }
 
         [Column("TENKH")]
-        public string name { get; set; }
+        public string TENKH { get; set; }
 
         [Column("MATKHAU")]
-        public string Pass { get; set; }
+        public string MATKHAU { get; set; }
 
         [Column("DIACHIKH")]
-        public string DiaChi { get; set; }
+        public string DIACHIKH { get; set; }
 
         [Column("SDT")]
-        public string sdt { get; set; }
+        public string SDT { get; set; }
 
         [Column("EMAIL")]
-        public string Email { get; set; }
+        public string EMAIL { get; set; }
     }
 }

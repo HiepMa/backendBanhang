@@ -12,21 +12,21 @@ namespace BANHANG.Models
     {
         [Key]
         [Column("ID_CTGH")]
-        public long Id { get; set; }
+        public long ID_CTGH { get; set; }
 
         [Column("IDGH")]
-        public long IdGh { get; set; }
+        public long IDGH { get; set; }
 
         [Column("IDSP")]
-        public long IdSP { get; set; }
+        public long IDSP { get; set; }
 
         [Column("SOLUONGBAN")]
-        public int Slg { get; set; }
+        public int SOLUONGBAN { get; set; }
 
-        [ForeignKey("IdGh")]
+        [ForeignKey("IDGH")]
         public GIOHANG giohang { get; set; }
 
-        [ForeignKey("IdSP")]
+        [ForeignKey("IDSP")]
         public SANPHAM sp { get; set; }
 
     }

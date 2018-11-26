@@ -12,23 +12,23 @@ namespace BANHANG.Models
     {
         [Key]
         [Column("IDSP")]
-        public long Id { get; set; }
+        public long IDSP { get; set; }
 
         [Column("TenSP")]
-        public string Name { get; set; }
+        public string TenSP { get; set; }
 
 
         [Column("MoTaSP")]
-        public string MoTa { get; set; }
+        public string MoTaSP { get; set; }
 
         [Column("DVT")]
         public string DVT { get; set; }
 
         [Column("SoLuongSP")]
-        public int Sl { get; set; }
+        public int SoLuongSP { get; set; }
 
         [Column("GiaBan")]
-        public decimal Giaban { get; set; }
+        public decimal GiaBan { get; set; }
 
 
     }

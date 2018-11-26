@@ -12,27 +12,27 @@ namespace BANHANG.Models
     {
         [Key]
         [Column("IDGIOHANG")]
-        public long Id { get; set; }
+        public long IDGIOHANG { get; set; }
 
         [Column("MAKH")]
-        public long Ma { get; set;}
+        public long MAKH { get; set;}
        
         [Column("NGAYMUA")]
-        public DateTime ngaymua { get; set; }
+        public DateTime NGAYMUA { get; set; }
 
         [Column("TTTHANHTOAN")]
-        public bool TT { get; set; }
+        public bool TTTHANHTOAN { get; set; }
 
         [Column("HINHTHUCTT")]
-        public string Hinhthuc { get; set; }
+        public string HINHTHUCTT { get; set; }
 
         [Column("TONGTIENGH")]
-        public long SumMoney { get; set; }
+        public long TONGTIENGH { get; set; }
 
         [Column("TONGTHANHTOAN")]
         public long SumTT { get; set; }
 
-        [ForeignKey("Ma")]
+        [ForeignKey("MAKH")]
         public virtual KHACHHANG khachhang { get; set; }
     }
 }

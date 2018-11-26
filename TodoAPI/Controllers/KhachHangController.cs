@@ -44,7 +44,7 @@ namespace BANHANG.Controllers
             _context.khachhang.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("Get", new { id = item.Id }, item);
+            return CreatedAtRoute("Get", new { id = item.IDKH }, item);
         }
 
         // PUT api/Todo/5

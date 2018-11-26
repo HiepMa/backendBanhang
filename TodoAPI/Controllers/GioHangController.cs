@@ -44,7 +44,7 @@ namespace BANHANG.Controllers
             _context.giohang.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("Get", new { id = item.Id }, item);
+            return CreatedAtRoute("Get", new { id = item.IDGIOHANG }, item);
         }
 
         // PUT api/Todo/5

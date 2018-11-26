@@ -44,7 +44,7 @@ namespace BANHANG.Controllers
             _context.sp.Add(item);
             _context.SaveChanges();
 
-            return CreatedAtRoute("Get", new { id = item.Id }, item);
+            return CreatedAtRoute("Get", new { id = item.IDSP }, item);
         }
 
         // PUT api/Todo/5

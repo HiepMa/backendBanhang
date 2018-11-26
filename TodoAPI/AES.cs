@@ -9,7 +9,7 @@ namespace BANHANG
         static string aes_key = "AXe8YwuIn1zxt3FPWTZFlAa14EHdPAdN9FaZ9RQWihc=";
         static string aes_iv = "bsxnWolsAyO7kCfWuyrnqg==";
 
-        public static string EncryptAES(string plainText)
+        public string EncryptAES(string plainText)
         {
             byte[] encrypted;
 
@@ -39,7 +39,7 @@ namespace BANHANG
             return Convert.ToBase64String(encrypted);
         }
 
-        public static string DecryptAES(string encryptedText)
+        public string DecryptAES(string encryptedText)
         {
             string decrypted = null;
             byte[] cipher = Convert.FromBase64String(encryptedText);
@@ -68,7 +68,7 @@ namespace BANHANG
             return decrypted;
         }
 
-        static byte[] EncryptStringToBytes(string plainText, byte[] Key, byte[] IV)
+        byte[] EncryptStringToBytes(string plainText, byte[] Key, byte[] IV)
         {
             // Check arguments.
             if (plainText == null || plainText.Length <= 0)
@@ -110,7 +110,7 @@ namespace BANHANG
 
         }
 
-        static string DecryptStringFromBytes(byte[] cipherText, byte[] Key, byte[] IV)
+        string DecryptStringFromBytes(byte[] cipherText, byte[] Key, byte[] IV)
         {
             // Check arguments.
             if (cipherText == null || cipherText.Length <= 0)

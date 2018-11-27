@@ -28,7 +28,7 @@ namespace BANHANG.Controllers
         {
             if (!String.IsNullOrEmpty(request.email) && !String.IsNullOrEmpty(request.pass))
             {
-                var user = _context.khachhang.Where(x => x.EMAIL == request.email && x.MATKHAU == request.pass).SingleOrDefault();
+                var user = _context.KhachHangs.Where(x => x.EMAIL == request.email && x.MATKHAU == request.pass).SingleOrDefault();
                 if (user != null)
                 {
                     var claimData = new[] { new Claim(ClaimTypes.Name, request.email) };

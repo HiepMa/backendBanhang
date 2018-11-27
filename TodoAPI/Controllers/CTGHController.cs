@@ -13,10 +13,10 @@ namespace BANHANG.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CTHDController : ControllerBase
+    public class CTGHController : ControllerBase
     {
         private readonly DataContext _context;
-        public CTHDController(DataContext context)
+        public CTGHController(DataContext context)
         {
             _context = context;
         }
@@ -24,24 +24,32 @@ namespace BANHANG.Controllers
         [HttpGet]
         public ActionResult<List<CT_GIOHANG>> Get()
         {
-            return _context.chitiet.Include(x => x.sp).ToList();
+            return _context.ChiTiets.Include(x => x.sp).ToList();
         }
         // GET: api/Todo/5
         [HttpGet("{id}")]
         public ActionResult<CT_GIOHANG> Get(long id)
         {
-            var item = _context.chitiet.Find(id);
+            var item = _context.ChiTiets.Find(id);
             if (item == null)
             {
                 return NoContent();
             }
             return item;
         }
+        // GET: api/Todo
+        [HttpGet("{idgh}", Name = "ctsp")]
+        public ActionResult<List<CT_GIOHANG>> GetList(long idgh)
+        {
+            return _context.ChiTiets.Include(x => x.giohang)
+                .Where(x => (x.giohang.IDGIOHANG == idgh))
+                .AsNoTracking().ToList();
+        }
         // POST api/Todo
         [HttpPost]
         public IActionResult Create(CT_GIOHANG item)
         {
-            _context.chitiet.Add(item);
+            _context.ChiTiets.Add(item);
             _context.SaveChanges();
 
             return CreatedAtRoute("Get", new { id = item.IDGH }, item);
@@ -51,14 +59,14 @@ namespace BANHANG.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, CT_GIOHANG item)
         {
-            var todo = _context.chitiet.Find(id);
+            var todo = _context.ChiTiets.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
             todo = item;
 
-            _context.chitiet.Update(todo);
+            _context.ChiTiets.Update(todo);
             _context.SaveChanges();
             return NoContent();
         }
@@ -67,12 +75,12 @@ namespace BANHANG.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.chitiet.Find(id);
+            var todo = _context.ChiTiets.Find(id);
             if (todo == null)
             {
                 return NoContent();
             }
-            _context.chitiet.Remove(todo);
+            _context.ChiTiets.Remove(todo);
             _context.SaveChanges();
             return NoContent();
         }

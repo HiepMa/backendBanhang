@@ -30,7 +30,7 @@ namespace BANHANG.Models
         public long TONGTIENGH { get; set; }
 
         [Column("TONGTHANHTOAN")]
-        public long SumTT { get; set; }
+        public long TONGTHANHTOAN { get; set; }
 
         [ForeignKey("MAKH")]
         public virtual KHACHHANG khachhang { get; set; }

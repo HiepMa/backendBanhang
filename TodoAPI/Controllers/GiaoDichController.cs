@@ -24,13 +24,13 @@ namespace BANHANG.Controllers
         [HttpGet]
         public ActionResult<List<GIAODICH>> Get()
         {
-            return _context.giaodich.Include(x=>x.Giohang).ToList();
+            return _context.Giaodiches.Include(x=>x.Giohang).ToList();
         }
         // GET: api/Todo/5
         [HttpGet("{id}")]
         public ActionResult<GIAODICH> Get(long id)
         {
-            var item = _context.giaodich.Find(id);
+            var item = _context.Giaodiches.Find(id);
             if (item == null)
             {
                 return NoContent();
@@ -41,7 +41,7 @@ namespace BANHANG.Controllers
         [HttpPost]
         public IActionResult Create(GIAODICH item)
         {
-            _context.giaodich.Add(item);
+            _context.Giaodiches.Add(item);
             _context.SaveChanges();
 
             return CreatedAtRoute("Get", new { id = item.IDGIAODICH }, item);
@@ -51,14 +51,14 @@ namespace BANHANG.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, GIAODICH item)
         {
-            var todo = _context.giaodich.Find(id);
+            var todo = _context.Giaodiches.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
             todo = item;
 
-            _context.giaodich.Update(todo);
+            _context.Giaodiches.Update(todo);
             _context.SaveChanges();
             return NoContent();
         }
@@ -67,12 +67,12 @@ namespace BANHANG.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.giaodich.Find(id);
+            var todo = _context.Giaodiches.Find(id);
             if (todo == null)
             {
                 return NoContent();
             }
-            _context.giaodich.Remove(todo);
+            _context.Giaodiches.Remove(todo);
             _context.SaveChanges();
             return NoContent();
         }

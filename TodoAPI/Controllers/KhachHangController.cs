@@ -24,13 +24,13 @@ namespace BANHANG.Controllers
         [HttpGet]
         public ActionResult<List<KHACHHANG>> Get()
         {
-            return _context.khachhang.ToList();
+            return _context.KhachHangs.ToList();
         }
         // GET: api/Todo/5
         [HttpGet("{id}", Name = "Get")]
         public ActionResult<KHACHHANG> Get(long id)
         {
-            var item = _context.khachhang.Find(id);
+            var item = _context.KhachHangs.Find(id);
             if (item == null)
             {
                 return NoContent();
@@ -41,7 +41,13 @@ namespace BANHANG.Controllers
         [HttpPost]
         public IActionResult Create(KHACHHANG item)
         {
-            _context.khachhang.Add(item);
+            string a = DateTime.Now.ToString("yyyyMMddhh:mm:ss");
+            string fag = a.Replace(" ", "");
+            string b = a.Replace("/", "");
+            string c = b.Replace(":", "");
+            long kq = long.Parse(c);
+            item.IDKH = kq;
+            _context.KhachHangs.Add(item);
             _context.SaveChanges();
 
             return CreatedAtRoute("Get", new { id = item.IDKH }, item);
@@ -51,14 +57,18 @@ namespace BANHANG.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, KHACHHANG item)
         {
-            var todo = _context.khachhang.Find(id);
-            if (todo == null)
+            var Kh = _context.KhachHangs.Find(id);
+            if (Kh == null)
             {
                 return NotFound();
             }
-            todo = item;
+            Kh.MATKHAU = item.MATKHAU;
+            Kh.SDT = item.SDT;
+            Kh.TENKH = item.TENKH;
+            Kh.EMAIL = item.EMAIL;
+            Kh.DIACHIKH = item.DIACHIKH;
 
-            _context.khachhang.Update(todo);
+            _context.KhachHangs.Update(Kh);
             _context.SaveChanges();
             return NoContent();
         }
@@ -67,12 +77,12 @@ namespace BANHANG.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.khachhang.Find(id);
+            var todo = _context.KhachHangs.Find(id);
             if (todo == null)
             {
                 return NoContent();
             }
-            _context.khachhang.Remove(todo);
+            _context.KhachHangs.Remove(todo);
             _context.SaveChanges();
             return NoContent();
         }

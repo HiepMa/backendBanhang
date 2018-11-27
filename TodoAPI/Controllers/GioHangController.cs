@@ -24,24 +24,38 @@ namespace BANHANG.Controllers
         [HttpGet]
         public ActionResult<List<GIOHANG>> Get()
         {
-            return _context.giohang.Include(x => x.khachhang).ToList();
+            return _context.Giohangs.Include(x => x.khachhang).ToList();
         }
         // GET: api/Todo/5
         [HttpGet("{id}")]
         public ActionResult<GIOHANG> Get(long id)
         {
-            var item = _context.giohang.Find(id);
+            var item = _context.Giohangs.Find(id);
             if (item == null)
             {
                 return NoContent();
             }
             return item;
         }
+        // GET: api/Todo
+        [HttpGet("{idkh}", Name = "KHCart")]
+        public ActionResult<List<GIOHANG>> Getidgh(long idkh)
+        {
+            return _context.Giohangs.Include(x => x.khachhang)
+                .Where(x => (x.khachhang.IDKH == idkh && x.TTTHANHTOAN == false))
+                .AsNoTracking().ToList();
+        }
         // POST api/Todo
         [HttpPost]
         public IActionResult Create(GIOHANG item)
         {
-            _context.giohang.Add(item);
+            string a = DateTime.Now.ToString("yyyyMMddhh:mm:ss");
+            string fag = a.Replace(" ", "");
+            string b = a.Replace("/", "");
+            string c = b.Replace(":", "");
+            long kq = long.Parse(c);
+            item.IDGIOHANG = kq;
+            _context.Giohangs.Add(item);
             _context.SaveChanges();
 
             return CreatedAtRoute("Get", new { id = item.IDGIOHANG }, item);
@@ -51,14 +65,19 @@ namespace BANHANG.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, GIOHANG item)
         {
-            var todo = _context.giohang.Find(id);
+            var todo = _context.Giohangs.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
-            todo = item;
+            todo.HINHTHUCTT = item.HINHTHUCTT;
+            todo.MAKH = item.MAKH;
+            todo.NGAYMUA = item.NGAYMUA;
+            todo.TTTHANHTOAN = item.TTTHANHTOAN;
+            todo.TONGTHANHTOAN = item.TONGTHANHTOAN;
+            todo.TONGTIENGH = item.TONGTIENGH;
 
-            _context.giohang.Update(todo);
+            _context.Giohangs.Update(todo);
             _context.SaveChanges();
             return NoContent();
         }
@@ -67,12 +86,12 @@ namespace BANHANG.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.giohang.Find(id);
+            var todo = _context.Giohangs.Find(id);
             if (todo == null)
             {
                 return NoContent();
             }
-            _context.giohang.Remove(todo);
+            _context.Giohangs.Remove(todo);
             _context.SaveChanges();
             return NoContent();
         }

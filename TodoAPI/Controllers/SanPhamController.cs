@@ -24,13 +24,13 @@ namespace BANHANG.Controllers
         [HttpGet]
         public ActionResult<List<SANPHAM>> Get()
         {
-            return _context.sp.ToList();
+            return _context.Sanphams.ToList();
         }
         // GET: api/Todo/5
         [HttpGet("{id}")]
         public ActionResult<SANPHAM> Get(long id)
         {
-            var item = _context.sp.Find(id);
+            var item = _context.Sanphams.Find(id);
             if (item == null)
             {
                 return NoContent();
@@ -41,7 +41,13 @@ namespace BANHANG.Controllers
         [HttpPost]
         public IActionResult Create(SANPHAM item)
         {
-            _context.sp.Add(item);
+            string a = DateTime.Now.ToString("yyyyMMddhh:mm:ss");
+            string fag = a.Replace(" ", "");
+            string b = a.Replace("/", "");
+            string c = b.Replace(":", "");
+            long kq = long.Parse(c);
+            item.IDSP = kq;
+            _context.Sanphams.Add(item);
             _context.SaveChanges();
 
             return CreatedAtRoute("Get", new { id = item.IDSP }, item);
@@ -49,16 +55,20 @@ namespace BANHANG.Controllers
 
         // PUT api/Todo/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, GIOHANG item)
+        public IActionResult Update(long id, SANPHAM item)
         {
-            var todo = _context.giohang.Find(id);
-            if (todo == null)
+            var sp = _context.Sanphams.Find(id);
+            if (sp == null)
             {
                 return NotFound();
             }
-            todo = item;
+            sp.GiaBan = item.GiaBan;
+            sp.SoLuongSP = item.SoLuongSP;
+            sp.TenSP = item.TenSP;
+            sp.DVT = item.DVT;
+            sp.MoTaSP = item.MoTaSP;
 
-            _context.giohang.Update(todo);
+            _context.Sanphams.Update(sp);
             _context.SaveChanges();
             return NoContent();
         }
@@ -67,12 +77,12 @@ namespace BANHANG.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var todo = _context.giohang.Find(id);
+            var todo = _context.Sanphams.Find(id);
             if (todo == null)
             {
                 return NoContent();
             }
-            _context.giohang.Remove(todo);
+            _context.Sanphams.Remove(todo);
             _context.SaveChanges();
             return NoContent();
         }

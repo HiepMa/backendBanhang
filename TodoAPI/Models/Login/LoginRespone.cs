@@ -9,10 +9,9 @@ namespace BANHANG.Models.Login
     {
         public long IDKH { get; set; }
         public string TENKH { get; set; }
-        public string MATKHAU { get; set; }
         public string DIACHIKH { get; set; }
         public string SDT { get; set; }
         public string EMAIL { get; set; }
-        public string token { get; set; }
+        public string Token { get; set; }
     }
 }

@@ -9,11 +9,11 @@ namespace BANHANG.Models
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
-        public DbSet<SANPHAM> sp { get; set; }
-        public DbSet<CT_GIOHANG> chitiet { get; set; }
-        public DbSet<KHACHHANG> khachhang { get; set; }
-        public DbSet<GIAODICH> giaodich { get; set; }
-        public DbSet<GIOHANG> giohang { get; set; }
+        public DbSet<SANPHAM> Sanphams { get; set; }
+        public DbSet<CT_GIOHANG> ChiTiets { get; set; }
+        public DbSet<KHACHHANG> KhachHangs { get; set; }
+        public DbSet<GIAODICH> Giaodiches { get; set; }
+        public DbSet<GIOHANG> Giohangs { get; set; }
 
     }
 }

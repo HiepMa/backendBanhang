@@ -47,9 +47,11 @@ namespace BANHANG.Controllers
                     var userResult = new LoginRespone
                     {
                         IDKH = user.IDKH,
-                        //MATKHAU = mahoa.EncryptAES(user.MATKHAU),
-
-                        token = "Bearer " + tokenstring
+                        DIACHIKH = user.DIACHIKH,
+                        EMAIL = user.EMAIL,
+                        SDT = user.SDT,
+                        TENKH = user.TENKH,
+                        Token = "Bearer " + tokenstring
                     };
                     return Ok(userResult);
                 }

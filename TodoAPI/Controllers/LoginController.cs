@@ -26,13 +26,13 @@ namespace BANHANG.Controllers
         [HttpPost("Token")]
         public ActionResult Token(LoginRequest request)
         {
-            if (!String.IsNullOrEmpty(request.email) && !String.IsNullOrEmpty(request.pass))
+            if (!String.IsNullOrEmpty(request.Email) && !String.IsNullOrEmpty(request.Password))
             {
-                var user = _context.KhachHangs.Where(x => x.EMAIL == request.email && x.MATKHAU == request.pass).SingleOrDefault();
+                var user = _context.KhachHangs.Where(x => x.EMAIL == request.Email && x.MATKHAU == request.Password).SingleOrDefault();
                 if (user != null)
                 {
-                    var claimData = new[] { new Claim(ClaimTypes.Name, request.email) };
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(request.email + " " + request.pass));
+                    var claimData = new[] { new Claim(ClaimTypes.Name, request.Email) };
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(request.Email + " " + request.Password));
                     var singingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
                     var token = new JwtSecurityToken(
@@ -43,7 +43,6 @@ namespace BANHANG.Controllers
                         signingCredentials: singingCredentials
                         );
                     var tokenstring = new JwtSecurityTokenHandler().WriteToken(token);
-                    AES mahoa = new AES();
                     var userResult = new LoginRespone
                     {
                         IDKH = user.IDKH,

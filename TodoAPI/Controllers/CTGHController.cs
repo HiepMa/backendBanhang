@@ -38,8 +38,8 @@ namespace BANHANG.Controllers
             return item;
         }
         // GET: api/Todo
-        [HttpGet("{idgh}", Name = "ctsp")]
-        public ActionResult<List<CT_GIOHANG>> GetList(long idgh)
+        [HttpGet("{idgh}",Name = "CTSP")]
+        public ActionResult<List<CT_GIOHANG>> CTSP(long idgh)
         {
             return _context.ChiTiets.Include(x => x.giohang)
                 .Where(x => (x.giohang.IDGIOHANG == idgh))

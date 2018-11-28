@@ -14,7 +14,7 @@ namespace BANHANG.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class GiaoDichController : ControllerBase
     {
         private readonly DataContext _context;

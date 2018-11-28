@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BANHANG.Models;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,6 +14,7 @@ namespace BANHANG.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize]
     public class GioHangController : ControllerBase
     {
         private readonly DataContext _context;
@@ -63,7 +65,7 @@ namespace BANHANG.Controllers
 
         // PUT api/Todo/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, GIOHANG item)
+        public IActionResult Update(long id, GIOHANG item)
         {
             var todo = _context.Giohangs.Find(id);
             if (todo == null)
@@ -72,7 +74,7 @@ namespace BANHANG.Controllers
             }
             todo.HINHTHUCTT = item.HINHTHUCTT;
             todo.MAKH = item.MAKH;
-            todo.NGAYMUA = item.NGAYMUA;
+            todo.NGAYMUA = DateTime.Now;
             todo.TTTHANHTOAN = item.TTTHANHTOAN;
             todo.TONGTHANHTOAN = item.TONGTHANHTOAN;
             todo.TONGTIENGH = item.TONGTIENGH;

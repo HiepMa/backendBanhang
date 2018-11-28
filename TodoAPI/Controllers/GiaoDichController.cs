@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BANHANG.Models;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,6 +14,7 @@ namespace BANHANG.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GiaoDichController : ControllerBase
     {
         private readonly DataContext _context;
@@ -41,6 +43,14 @@ namespace BANHANG.Controllers
         [HttpPost]
         public IActionResult Create(GIAODICH item)
         {
+            string a = DateTime.Now.ToString("yyyyMMddhh:mm:ss");
+            string fag = a.Replace(" ", "");
+            string b = a.Replace("/", "");
+            string c = b.Replace(":", "");
+            long kq = long.Parse(c);
+            item.IDGIAODICH = kq;
+            item.NGAYTHANHTOAN = DateTime.Now;
+            item.TRANGTHAITT = false;
             _context.Giaodiches.Add(item);
             _context.SaveChanges();
 
@@ -49,14 +59,18 @@ namespace BANHANG.Controllers
 
         // PUT api/Todo/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, GIAODICH item)
+        public IActionResult Update(long id, GIAODICH item)
         {
             var todo = _context.Giaodiches.Find(id);
             if (todo == null)
             {
                 return NotFound();
             }
-            todo = item;
+            todo.IDGIOHANG = item.IDGIOHANG;
+            todo.TRANGTHAITT = item.TRANGTHAITT;
+            todo.SOTIEN = item.SOTIEN;
+            todo.SOTHE = item.SOTHE;
+            todo.NGAYTHANHTOAN = DateTime.Now;
 
             _context.Giaodiches.Update(todo);
             _context.SaveChanges();

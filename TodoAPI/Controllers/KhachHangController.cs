@@ -55,7 +55,7 @@ namespace BANHANG.Controllers
 
         // PUT api/Todo/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, KHACHHANG item)
+        public IActionResult Update(long id, KHACHHANG item)
         {
             var Kh = _context.KhachHangs.Find(id);
             if (Kh == null)

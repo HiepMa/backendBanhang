@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using BANHANG.Models;
-using BANHANG.Models.Login;
+using BANHANG.Models.Requests;
+using BANHANG.Models.Reponses;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,7 +33,7 @@ namespace BANHANG.Controllers
                 if (user != null)
                 {
                     var claimData = new[] { new Claim(ClaimTypes.Name, request.Email) };
-                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(request.Email + " " + request.Password));
+                    var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456"));
                     var singingCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
                     var token = new JwtSecurityToken(

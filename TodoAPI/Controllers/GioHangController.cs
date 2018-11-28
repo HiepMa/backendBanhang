@@ -29,23 +29,28 @@ namespace BANHANG.Controllers
             return _context.Giohangs.Include(x => x.khachhang).ToList();
         }
         // GET: api/Todo/5
-        [HttpGet("{id}")]
-        public ActionResult<GIOHANG> Get(long id)
+        //[HttpGet("{id}")]
+        //public ActionResult<GIOHANG> Get(long id)
+        //{
+        //    var item = _context.Giohangs.Find(id);
+        //    if (item == null)
+        //    {
+        //        return NoContent();
+        //    }
+        //    return item;
+        //}
+        // GET: api/Todo
+        [HttpGet("{idkh}", Name = "KHCart")]
+        public ActionResult<List<GIOHANG>> Get(long idkh)
         {
-            var item = _context.Giohangs.Find(id);
+            var item = _context.Giohangs.Include(x => x.khachhang)
+                .Where(x => (x.khachhang.IDKH == idkh && x.TTTHANHTOAN == false))
+                .AsNoTracking().ToList();
             if (item == null)
             {
                 return NoContent();
             }
             return item;
-        }
-        // GET: api/Todo
-        [HttpGet("{idkh}", Name = "KHCart")]
-        public ActionResult<List<GIOHANG>> Getidgh(long idkh)
-        {
-            return _context.Giohangs.Include(x => x.khachhang)
-                .Where(x => (x.khachhang.IDKH == idkh && x.TTTHANHTOAN == false))
-                .AsNoTracking().ToList();
         }
         // POST api/Todo
         [HttpPost]

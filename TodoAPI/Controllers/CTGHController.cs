@@ -29,23 +29,28 @@ namespace BANHANG.Controllers
             return _context.ChiTiets.Include(x => x.sp).ToList();
         }
         // GET: api/Todo/5
-        [HttpGet("{id}")]
-        public ActionResult<CT_GIOHANG> Get(long id)
+        //[HttpGet("{id}")]
+        //public ActionResult<CT_GIOHANG> Get(long id)
+        //{
+        //    var item = _context.ChiTiets.Find(id);
+        //    if (item == null)
+        //    {
+        //        return NoContent();
+        //    }
+        //    return item;
+        //}
+        // GET: api/Todo
+        [HttpGet("{idgh}",Name = "CTSP")]
+        public ActionResult<List<CT_GIOHANG>> Get(long idgh)
         {
-            var item = _context.ChiTiets.Find(id);
+            var item = _context.ChiTiets.Include(x => x.giohang)
+                .Where(x => (x.giohang.IDGIOHANG == idgh))
+                .AsNoTracking().ToList();
             if (item == null)
             {
                 return NoContent();
             }
             return item;
-        }
-        // GET: api/Todo
-        [HttpGet("{idgh}",Name = "CTSP")]
-        public ActionResult<List<CT_GIOHANG>> CTSP(long idgh)
-        {
-            return _context.ChiTiets.Include(x => x.giohang)
-                .Where(x => (x.giohang.IDGIOHANG == idgh))
-                .AsNoTracking().ToList();
         }
         // POST api/Todo
         [HttpPost]

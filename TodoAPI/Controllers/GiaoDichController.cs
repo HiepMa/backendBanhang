@@ -43,6 +43,7 @@ namespace BANHANG.Controllers
         [HttpPost]
         public IActionResult Create(GIAODICH item)
         {
+
             string a = DateTime.Now.ToString("yyyyMMddhh:mm:ss");
             string fag = a.Replace(" ", "");
             string b = a.Replace("/", "");

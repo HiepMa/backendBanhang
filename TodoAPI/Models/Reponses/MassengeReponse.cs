@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace BANHANG.Models.Reponses
 {
-    public class PaymentReponse
+    public class MassengeReponse
     {
-        public string Sothe { get; set; }
+        public string Mass { get; set; }
         public bool flag { get; set; }
     }
 }

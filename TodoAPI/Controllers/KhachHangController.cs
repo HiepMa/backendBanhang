@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BANHANG.Models;
+using System.Text;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -62,7 +63,7 @@ namespace BANHANG.Controllers
             {
                 return NotFound();
             }
-            Kh.MATKHAU = item.MATKHAU;
+            Kh.MATKHAU = CreateMD5(item.MATKHAU);
             Kh.SDT = item.SDT;
             Kh.TENKH = item.TENKH;
             Kh.EMAIL = item.EMAIL;
@@ -85,6 +86,23 @@ namespace BANHANG.Controllers
             _context.KhachHangs.Remove(todo);
             _context.SaveChanges();
             return NoContent();
+        }
+        public static string CreateMD5(string input)
+        {
+            // Use input string to calculate MD5 hash
+            using (System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create())
+            {
+                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+                byte[] hashBytes = md5.ComputeHash(inputBytes);
+
+                // Convert the byte array to hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < hashBytes.Length; i++)
+                {
+                    sb.Append(hashBytes[i].ToString("X2"));
+                }
+                return sb.ToString();
+            }
         }
     }
 }

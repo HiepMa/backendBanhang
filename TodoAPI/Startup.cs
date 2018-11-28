@@ -12,12 +12,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using BANHANG.Models;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using System.Text;
 
-namespace TodoAPI
+namespace BANHANG
 {
     public class Startup
     {
@@ -64,30 +60,15 @@ namespace TodoAPI
             string connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DataContext>(option => option.UseSqlServer(connectionString));
 
+            services.AddMvc();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin", builder =>
                 {
-                    builder.WithOrigins("*").AllowAnyMethod().AllowCredentials()
+                    builder.WithOrigins("*").AllowAnyMethod()
                     .AllowAnyHeader();
-                    
+
                 });
-            });
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = "mysite.com",
-                    ValidAudience = "mysite.com",
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("1234567890123456"))
-                };
-            });
-            services.AddMvc().AddJsonOptions(options =>
-            {
-                options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
             });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,7 +85,6 @@ namespace TodoAPI
             */
             // app.UseHttpsRedirection();
             app.UseCors("AllowSpecificOrigin");
-            app.UseAuthentication();
             app.UseMvc();
         }
     }

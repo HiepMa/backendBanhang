@@ -48,6 +48,7 @@ namespace BANHANG.Controllers
             string c = b.Replace(":", "");
             long kq = long.Parse(c);
             item.IDKH = kq;
+            item.MATKHAU = CreateMD5(item.MATKHAU);
             _context.KhachHangs.Add(item);
             _context.SaveChanges();
 
@@ -63,7 +64,7 @@ namespace BANHANG.Controllers
             {
                 return NotFound();
             }
-            Kh.MATKHAU = CreateMD5(item.MATKHAU);
+            Kh.MATKHAU = item.MATKHAU;
             Kh.SDT = item.SDT;
             Kh.TENKH = item.TENKH;
             Kh.EMAIL = item.EMAIL;

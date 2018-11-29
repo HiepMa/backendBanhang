@@ -27,7 +27,7 @@ namespace BANHANG.Models
         public string HINHTHUCTT { get; set; }
 
         [Column("TONGTIENGH")]
-        public decimal TONGTIENGH { get; set; }
+        public long TONGTIENGH { get; set; }
 
         [Column("TONGTHANHTOAN")]
         public long TONGTHANHTOAN { get; set; }

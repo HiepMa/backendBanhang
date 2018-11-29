@@ -28,7 +28,7 @@ namespace BANHANG.Controllers
         public ActionResult Token(LoginRequest request)
         {
             if (!String.IsNullOrEmpty(request.Email) && !String.IsNullOrEmpty(request.Password))
-            {
+            {   
                 var user = _context.KhachHangs.Where(x => x.EMAIL == request.Email && x.MATKHAU == request.Password).SingleOrDefault();
                 if (user != null)
                 {
@@ -39,7 +39,7 @@ namespace BANHANG.Controllers
                     var token = new JwtSecurityToken(
                         issuer: "mysite.com",
                         audience: "mysite.com",
-                        expires: DateTime.Now.AddMinutes(20),
+                        expires: DateTime.Now.AddMinutes(30),
                         claims: claimData,
                         signingCredentials: singingCredentials
                         );
@@ -57,6 +57,11 @@ namespace BANHANG.Controllers
                 }
             }
             return Unauthorized();
+        }
+
+        private string CreateMD5(string mATKHAU)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace BANHANG.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class GioHangController : ControllerBase
     {
         private readonly DataContext _context;

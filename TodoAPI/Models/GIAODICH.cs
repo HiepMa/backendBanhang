@@ -18,7 +18,7 @@ namespace BANHANG.Models
         public  long IDGIOHANG { get; set; }
 
         [Column("SOTIEN")]
-        public long SOTIEN { get; set; }
+        public decimal SOTIEN { get; set; }
 
         [Column("NGAYTHANHTOAN")]
         public  DateTime NGAYTHANHTOAN { get; set; }

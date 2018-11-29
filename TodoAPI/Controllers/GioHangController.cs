@@ -62,6 +62,7 @@ namespace BANHANG.Controllers
             string c = b.Replace(":", "");
             long kq = long.Parse(c);
             item.IDGIOHANG = kq;
+            item.NGAYMUA = DateTime.Now;
             _context.Giohangs.Add(item);
             _context.SaveChanges();
 

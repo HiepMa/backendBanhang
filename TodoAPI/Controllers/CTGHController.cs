@@ -61,7 +61,7 @@ namespace BANHANG.Controllers
             string b = a.Replace("/", "");
             string c = b.Replace(":", "");
             long kq = long.Parse(c);
-            item.ID_CTGH = kq;
+            item.ID_CTGH = kq+item.IDSP;
             _context.ChiTiets.Add(item);
             _context.SaveChanges();
 

@@ -64,7 +64,7 @@ namespace BANHANG.Controllers
             {
                 return NotFound();
             }
-            Kh.MATKHAU = item.MATKHAU;
+            Kh.MATKHAU = CreateMD5(item.MATKHAU);
             Kh.SDT = item.SDT;
             Kh.TENKH = item.TENKH;
             Kh.EMAIL = item.EMAIL;
